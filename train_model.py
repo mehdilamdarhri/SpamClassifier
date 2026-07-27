@@ -2,7 +2,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+
 
 # Convert file to csv
 #df = pd.read_csv("data/SMSSpamCollection", sep="\t", names=["label", "message"])
@@ -12,7 +13,7 @@ df = pd.read_csv("data/spam.csv")
 #print(df.info())
 #print(df.isnull().sum())
 #print(df.head())
-print(df.shape)
+#print(df.shape)
 
 
 
@@ -50,3 +51,6 @@ model.fit(x_train, y_train)
 predictions = model.predict(x_test)
 accuracy = accuracy_score(predictions, y_test)
 print(accuracy)
+
+print(confusion_matrix(y_test, predictions))
+print(classification_report(y_test, predictions))
